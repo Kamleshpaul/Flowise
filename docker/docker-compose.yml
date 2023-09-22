@@ -15,8 +15,20 @@ services:
             - FLOWISE_SECRETKEY_OVERWRITE=${FLOWISE_SECRETKEY_OVERWRITE}
             - LOG_LEVEL=${LOG_LEVEL}
             - LOG_PATH=${LOG_PATH}
+            - LANGCHAIN_TRACING_V2=${LANGCHAIN_TRACING_V2}
+            - LANGCHAIN_ENDPOINT=${LANGCHAIN_ENDPOINT}
+            - LANGCHAIN_API_KEY=${LANGCHAIN_API_KEY}
+            - LANGCHAIN_PROJECT=${LANGCHAIN_PROJECT}
         ports:
             - '${PORT}:${PORT}'
         volumes:
             - ~/.flowise:/root/.flowise
         command: /bin/sh -c "sleep 3; flowise start"
+ networks:
+            - flowise_net
+            - zep_zep-network
+networks:
+    zep_zep-network:
+        external: true
+
+
